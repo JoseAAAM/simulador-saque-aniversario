@@ -7,7 +7,7 @@ import { FormIntro } from '@/components/form-intro';
 
 const montserrat = Montserrat({
   variable: '--font',
-  weight: ['400', '700'],
+  weight: ['400', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.variable} antialiased`}>
-        <div className="w-[90vw] max-w-[350px] md:max-w-[700px] mx-auto pb-8">
+        <div className="w-[90vw] max-w-[350px] md:max-w-[700px] lg:max-w-[800px] mx-auto pb-8">
           <Header />
           <Provider>
             <FormIntro />

@@ -1,3 +1,9 @@
+import { WithdrawalResult } from '@/components/withdrawal-result';
+
 export default function Result() {
-  return <main></main>;
+  return (
+    <main>
+      <WithdrawalResult />
+    </main>
+  );
 }

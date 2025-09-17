@@ -1,65 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import z from 'zod';
 import { InputMask } from '@react-input/mask';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NumericFormat } from 'react-number-format';
 import { useFgts } from '@/contexts/fgts';
-import { calculateWithdraw } from '@/utils/calculate-withdraw';
+import { calculateWithdrawal as calculateWithdrawal } from '@/utils/calculate-withdrawal';
 import { FormField } from '../form-field';
 import { useRouter } from 'next/navigation';
+import { months } from '@/constants/months';
+import { withdrawalFormSchema } from './schema';
 
-const MONTHS = Array.from({ length: 12 }, (_, i) =>
-  new Date(0, i).toLocaleString('pt-BR', { month: 'long' }),
-);
+export type WithdrawalFormType = z.infer<typeof withdrawalFormSchema>;
 
-export const withdrawFormSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, 'O nome é obrigatório')
-    .max(100, 'O nome é muito longo'),
-
-  cellphone: z
-    .string()
-    .transform((val) => (val ?? '').toString().replace(/\D/g, ''))
-    .refine((digits) => digits.length === 10 || digits.length === 11, {
-      message: 'O celular deve conter 11 dígitos',
-    }),
-
-  balance: z
-    .string()
-    .trim()
-    .refine((s) => s.length > 0, { message: 'O saldo é obrigatório' })
-    .refine(
-      (s) => {
-        const cleaned = s
-          .replace(/\./g, '')
-          .replace(/,/g, '.')
-          .replace(/[^\d.]/g, '');
-        const number = Number(cleaned);
-        return !Number.isNaN(number) && number >= 0;
-      },
-      { message: 'O saldo deve ser um número positivo' },
-    ),
-
-  date: z.string().refine((val) => MONTHS.includes(val), {
-    message: 'Mês inválido',
-  }),
-});
-
-export type WithdrawFormType = z.infer<typeof withdrawFormSchema>;
-
-export const WithdrawForm: React.FC = () => {
+export const WithdrawalForm: React.FC = () => {
   const {
     handleSubmit,
     register,
     control,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(withdrawFormSchema),
+    resolver: zodResolver(withdrawalFormSchema),
     defaultValues: {
       name: '',
       balance: '',
@@ -70,7 +33,7 @@ export const WithdrawForm: React.FC = () => {
   const { saveFormData } = useFgts();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<WithdrawFormType> = (data) => {
+  const onSubmit: SubmitHandler<WithdrawalFormType> = (data) => {
     const balance = Number(
       data.balance
         .replace(/\./g, '')
@@ -78,18 +41,18 @@ export const WithdrawForm: React.FC = () => {
         .replace(/[^\d.]/g, ''),
     );
 
-    const result = calculateWithdraw({
+    const result = calculateWithdrawal({
       balance: Number.isNaN(balance) ? 0 : balance,
     });
 
-    saveFormData({ name: data.name, amount: result.withdrawAmount });
+    saveFormData({ name: data.name, amount: result.withdrawalAmount });
 
     router.push('/resultado');
   };
 
   return (
     <form
-      className="flex flex-col bg-white gap-4 justify-center items-center py-8 rounded-xl mx-auto"
+      className="flex flex-col bg-white gap-4 justify-center items-center py-8 rounded-xl mx-auto lg:py-12 lg:gap-6"
       onSubmit={handleSubmit(onSubmit)}
     >
       <fieldset className="flex flex-wrap gap-4 w-[100%] justify-center">
@@ -152,7 +115,7 @@ export const WithdrawForm: React.FC = () => {
             <option className="text-sm" value="">
               Selecione um mês
             </option>
-            {MONTHS.map((month) => (
+            {months.map((month) => (
               <option className="text-sm" key={month}>
                 {month}
               </option>
@@ -162,7 +125,7 @@ export const WithdrawForm: React.FC = () => {
       </fieldset>
 
       <button
-        className="w-100 max-w-[300px] px-4 py-6 rounded-md bg-yellow-500 font-bold"
+        className="w-100 max-w-[300px] px-4 py-6 rounded-md bg-yellow-500 font-bold lg:mt-8"
         type="submit"
       >
         Ver Proposta

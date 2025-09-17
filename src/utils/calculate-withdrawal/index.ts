@@ -1,4 +1,4 @@
-export const withdrawRules = [
+export const withdrawalRules = [
   {
     minValue: 0,
     maxValue: 500,
@@ -43,10 +43,10 @@ export const withdrawRules = [
   },
 ]
 
-export function calculateWithdraw({
+export function calculateWithdrawal({
   balance
 }: { balance: number }) {
-  const rule = withdrawRules.find(
+  const rule = withdrawalRules.find(
     r => balance >= r.minValue && balance <= r.maxValue
   )
 
@@ -54,9 +54,9 @@ export function calculateWithdraw({
     throw new Error("No rule found for this balance.")
   }
 
-  const withdrawAmount = balance * rule.percentage + rule.fixedValue
+  const withdrawalAmount = balance * rule.percentage + rule.fixedValue
 
   return {
-    withdrawAmount,
+    withdrawalAmount,
   }
 }

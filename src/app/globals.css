@@ -6,18 +6,13 @@
   --dark-blue: #023465;
 }
 
-@theme inline {
-  --font: var(--font);
-}
-
 body {
   background: var(--dark-blue);
   color: var(--white);
   font-family: var(--font), sans-serif;
-  /* background-image: url(/background-image.jpg); */
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100dvh;
+
+  min-height: 100dvh;
+  height: 100%;
 }
 
 input {
@@ -36,4 +31,26 @@ option {
 
 button {
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  body {
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position-x: 50%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url(/background-image.jpg);
+    z-index: -1;
+
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  }
 }
