@@ -9,7 +9,7 @@ export function FormIntro() {
   const [name] = data?.name?.split(' ');
 
   return (
-    <section className="flex flex-wrap items-end gap-6 pb-8 px-4 md:pb-18 lg:pb-26">
+    <section className="flex flex-wrap items-end justify-between gap-6 pb-8 px-4 md:pb-18 lg:pb-26">
       {name ? (
         <p className="text-4xl lg:text-5xl font-bold italic">
           <br />

@@ -54,7 +54,8 @@ export function calculateWithdrawal({
     throw new Error("No rule found for this balance.")
   }
 
-  const withdrawalAmount = balance * rule.percentage + rule.fixedValue
+  const withdrawalAmount = Math.round((balance * rule.percentage + rule.fixedValue) * 100) / 100
+
 
   return {
     withdrawalAmount,

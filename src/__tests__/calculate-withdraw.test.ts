@@ -9,7 +9,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage;
+    const expectedAmount = Math.round((balance * percentage) * 100) / 100;
 
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });
@@ -23,7 +23,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage + fixedValue;
+    const expectedAmount = Math.round((balance * percentage + fixedValue) * 100) / 100;
 
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });
@@ -37,8 +37,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage + fixedValue;
-
+    const expectedAmount = Math.round((balance * percentage + fixedValue) * 100) / 100;
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });
 
@@ -51,7 +50,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage + fixedValue;
+    const expectedAmount = Math.round((balance * percentage + fixedValue) * 100) / 100;
 
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });
@@ -65,7 +64,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage + fixedValue;
+    const expectedAmount = Math.round((balance * percentage + fixedValue) * 100) / 100;
 
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });
@@ -79,7 +78,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage + fixedValue;
+    const expectedAmount = Math.round((balance * percentage + fixedValue) * 100) / 100;
 
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });
@@ -93,7 +92,7 @@ describe('calculateWithdrawal', () => {
 
     const result = calculateWithdrawal({ balance });
 
-    const expectedAmount = balance * percentage + fixedValue;
+    const expectedAmount = Math.round((balance * percentage + fixedValue) * 100) / 100;
 
     expect(result.withdrawalAmount).toBe(expectedAmount);
   });

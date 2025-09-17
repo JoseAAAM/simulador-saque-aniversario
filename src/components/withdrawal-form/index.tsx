@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import z from 'zod';
 import { InputMask } from '@react-input/mask';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';

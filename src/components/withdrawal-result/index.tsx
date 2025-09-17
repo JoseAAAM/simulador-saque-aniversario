@@ -10,7 +10,7 @@ export function WithdrawalResult() {
     redirect('/');
   }
 
-  const [real, cents] = data?.amount?.toString().split(',');
+  const [real, cents] = data?.amount?.toString().split('.');
 
   return (
     <div className="bg-white w-full py-16 rounded-xl mx-auto flex flex-col px-8 gap-8 items-center justify-between md:items-start md:flex-row lg:px-20 lg:py-26">
