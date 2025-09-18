@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Saque-Aniversário FGTS – Formulário de Cálculo
 
-## Getting Started
+Este projeto é um formulário interativo que calcula o valor do **saque-aniversário do FGTS** com base no saldo informado pelo usuário e nas regras oficiais de saque.
 
-First, run the development server:
+Além disso, o formulário realiza a **validação do telefone** via API externa para garantir que os dados fornecidos sejam válidos.
+
+---
+
+## 📋 Funcionalidades
+
+- Campos do formulário:
+
+  - **Nome**
+  - **Telefone** (validado via API da [Abstract API](https://www.abstractapi.com/api/phone-validation-api))
+  - **Saldo** (valor disponível em FGTS)
+  - **Mês de Aniversário**
+
+- Cálculo automático do saque com base nas seguintes faixas de valores:
+
+| Faixa de Saldo (R$) | Percentual (%) | Parcela Fixa (R$) |
+| ------------------- | -------------- | ----------------- |
+| 0 – 500             | 50%            | 0                 |
+| 500,01 – 1.000      | 40%            | 50                |
+| 1.000,01 – 5.000    | 30%            | 150               |
+| 5.000,01 – 10.000   | 20%            | 650               |
+| 10.000,01 – 15.000  | 15%            | 1.150             |
+| 15.000,01 – 20.000  | 10%            | 1.900             |
+| Acima de 20.000,01  | 5%             | 2.900             |
+
+- Integração com **Zod** e **React Hook Form** para validação de dados de formulário.
+- Validação do telefone feita em uma **API Route do Next.js**, que consome a Abstract API.
+- Testes unitários com **Jest** e **Testing Library**.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [Abstract API – Phone Validation](https://www.abstractapi.com/api/phone-validation-api)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+---
+
+## 🚀 Como Rodar o Projeto
+
+### 1. Clonar o repositório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/JoseAAAM/formulario-saque-aniversario.git
+cd formulario-saque-aniversario
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instalar dependências
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+# ou
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Configurar variáveis de ambiente
 
-## Learn More
+Crie uma conta em Abstract API e gere uma chave de API (Plano gratuito com 250 chamadas para teste).
 
-To learn more about Next.js, take a look at the following resources:
+Clone o arquivo .env.example, renomeie para .env e adicione sua chave na variavel **PHONE_VALIDATION_API_KEY**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Rodar o servidor de desenvolvimento
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+npm run dev
+# ou
+yarn dev
+```
