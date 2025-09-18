@@ -83,7 +83,7 @@ yarn install
 
 ### 3. Configurar variáveis de ambiente
 
-Crie uma conta em Abstract API e gere uma chave de API (Plano gratuito com 250 chamadas para teste).
+Crie uma conta em [Abstract API](https://www.abstractapi.com/api/phone-validation-api) e gere uma chave de API (Plano gratuito com 250 chamadas para teste).
 
 Clone o arquivo .env.example, renomeie para .env e adicione sua chave na variavel **PHONE_VALIDATION_API_KEY**.
 
