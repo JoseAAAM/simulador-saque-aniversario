@@ -60,7 +60,7 @@ Uma opção também seria carregar as informações calculados por searchParams,
 
 ### 4. 🚀 Validação Robusta e Gerenciamento Eficiente com React Hook Form e Zod
 
-O **React Hook Form** e o **Zod** foram utilizados para manter uma gestão simplificada e eficiente do formulário, permitindo uma fácil gestão dos erros e facilidade em mudanças futuras no formulário
+O **React Hook Form** e o **Zod** foram utilizados para manter uma gestão simplificada e eficiente do formulário, permitindo um controle facilitado dos erros e melhorando a manutenabilidade.
 
 ---
 
