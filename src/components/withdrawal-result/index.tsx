@@ -24,7 +24,7 @@ export function WithdrawalResult() {
             {new Intl.NumberFormat('pt-BR', {}).format(Number(real))}
           </span>
           <span className="text-cyan-600 font-semibold text-2xl">
-            ,{cents ?? '00'}
+            ,{cents?.toString().padEnd(2, '0') ?? '00'}
           </span>
         </div>
       </div>

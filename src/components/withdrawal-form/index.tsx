@@ -26,7 +26,7 @@ export const WithdrawalForm: React.FC = () => {
     defaultValues: {
       name: '',
       balance: '',
-      cellphone: '',
+      phone: '',
       date: '',
     },
   });
@@ -59,21 +59,23 @@ export const WithdrawalForm: React.FC = () => {
         <FormField label="Qual seu nome?" error={errors.name?.message}>
           <input
             {...register('name')}
+            data-testid="name"
             placeholder="ex: Guilherme Neves"
             className="w-100 max-w-[300px] p-4 border-2 border-gray-400 rounded-md text-sm"
           />
         </FormField>
 
-        <FormField label="Qual seu telefone?" error={errors.cellphone?.message}>
+        <FormField label="Qual seu telefone?" error={errors.phone?.message}>
           <Controller
-            name="cellphone"
+            name="phone"
             control={control}
             render={({ field }) => (
               <InputMask
+                data-testid="phone"
                 mask={'(__) _____-____'}
                 replacement={{ _: /\d/ }}
                 separate
-                name="cellphone"
+                name="phone"
                 value={field.value}
                 onChange={field.onChange}
                 placeholder="ex: (21) 98765-9087"
@@ -92,6 +94,7 @@ export const WithdrawalForm: React.FC = () => {
             render={({ field }) => (
               <NumericFormat
                 {...field}
+                data-testid="balance"
                 prefix="R$ "
                 thousandSeparator="."
                 decimalSeparator=","
@@ -110,6 +113,7 @@ export const WithdrawalForm: React.FC = () => {
         >
           <select
             {...register('date')}
+            data-testid="date"
             className="w-100 max-w-[300px] p-4 border-2 border-gray-400 rounded-md text-sm"
           >
             <option className="text-sm" value="">
@@ -125,6 +129,7 @@ export const WithdrawalForm: React.FC = () => {
       </fieldset>
 
       <button
+        data-testid="submit-button"
         className="w-100 max-w-[300px] px-4 py-6 rounded-md bg-yellow-500 font-bold lg:mt-8"
         type="submit"
       >

@@ -8,7 +8,7 @@ export const withdrawalFormSchema = z.object({
     .min(1, 'O nome é obrigatório')
     .max(100, 'O nome é muito longo'),
 
-  cellphone: z
+  phone: z
     .string()
     .transform((val) => (val ?? '').toString().replace(/\D/g, ''))
     .refine((digits) => digits.length === 10 || digits.length === 11, {
