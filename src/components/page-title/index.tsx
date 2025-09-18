@@ -1,10 +1,10 @@
 'use client';
 
-import { useFgts } from '@/contexts/fgts';
+import { useAnniversaryWithdrawal } from '@/contexts/anniversary-withdrawal';
 import { DollarSign } from 'react-feather';
 
-export function FormIntro() {
-  const { data } = useFgts();
+export function PageTitle() {
+  const { data } = useAnniversaryWithdrawal();
 
   const [name] = data?.name?.split(' ');
 

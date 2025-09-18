@@ -1,26 +1,28 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { WithdrawalResult } from './';
+import { AnniversaryWithdrawalResult } from '.';
 
 jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
 }));
-jest.mock('@/contexts/fgts');
+jest.mock('@/contexts/anniversary-withdrawal');
 
-const mockedUseFgts = jest.mocked(useFgts);
+const mockedUseAnniversaryWithdrawal = jest.mocked(useAnniversaryWithdrawal);
 
-import { useFgts } from '@/contexts/fgts';
+import { useAnniversaryWithdrawal } from '@/contexts/anniversary-withdrawal';
 import { redirect } from 'next/navigation';
 
-describe('WithdrawalResult component', () => {
+describe('AnniversaryWithdrawalResult component', () => {
   beforeEach(() => {
-    mockedUseFgts.mockReset();
+    mockedUseAnniversaryWithdrawal.mockReset();
   });
 
   it('should render the withdrawal amount correctly', () => {
-    (useFgts as jest.Mock).mockReturnValue({ data: { amount: 123.45 } });
+    (useAnniversaryWithdrawal as jest.Mock).mockReturnValue({
+      data: { amount: 123.45 },
+    });
 
-    render(<WithdrawalResult />);
+    render(<AnniversaryWithdrawalResult />);
 
     expect(screen.getByText('R$')).toBeInTheDocument();
     expect(screen.getByText('123')).toBeInTheDocument();
@@ -28,9 +30,11 @@ describe('WithdrawalResult component', () => {
   });
 
   it('should render the withdrawal amount without breaking the cents', () => {
-    (useFgts as jest.Mock).mockReturnValue({ data: { amount: 123.4 } });
+    (useAnniversaryWithdrawal as jest.Mock).mockReturnValue({
+      data: { amount: 123.4 },
+    });
 
-    render(<WithdrawalResult />);
+    render(<AnniversaryWithdrawalResult />);
 
     expect(screen.getByText('R$')).toBeInTheDocument();
     expect(screen.getByText('123')).toBeInTheDocument();
@@ -38,9 +42,11 @@ describe('WithdrawalResult component', () => {
   });
 
   it('should redirect to homepage if data is empty', () => {
-    (useFgts as jest.Mock).mockReturnValue({ data: { amount: 0, name: '' } });
+    (useAnniversaryWithdrawal as jest.Mock).mockReturnValue({
+      data: { amount: 0, name: '' },
+    });
 
-    render(<WithdrawalResult />);
+    render(<AnniversaryWithdrawalResult />);
 
     expect(redirect).toHaveBeenCalled();
   });

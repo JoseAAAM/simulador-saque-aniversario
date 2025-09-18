@@ -6,7 +6,7 @@ describe('FormField component', () => {
   it('should render the component correctly', () => {
     render(
       <FormField label="Nome">
-        <input value="José" data-testid="name-input" />
+        <input value="José" onChange={() => {}} data-testid="name-input" />
       </FormField>,
     );
 
@@ -17,7 +17,7 @@ describe('FormField component', () => {
   it('should render the errors correctly', () => {
     render(
       <FormField label="Nome" error="Nome invalido">
-        <input value="José" data-testid="name-input" />
+        <input value="José" onChange={() => {}} data-testid="name-input" />
       </FormField>,
     );
 

@@ -1,7 +1,7 @@
 import { months } from "@/constants/months";
 import z from "zod";
 
-export const withdrawalFormSchema = z.object({
+export const anniversaryWithdrawalFormSchema = z.object({
   name: z
     .string()
     .trim()

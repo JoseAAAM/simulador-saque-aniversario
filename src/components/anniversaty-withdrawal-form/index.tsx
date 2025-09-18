@@ -6,23 +6,25 @@ import { InputMask } from '@react-input/mask';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NumericFormat } from 'react-number-format';
-import { useFgts } from '@/contexts/fgts';
+import { useAnniversaryWithdrawal } from '@/contexts/anniversary-withdrawal';
 import { calculateWithdrawal as calculateWithdrawal } from '@/utils/calculate-withdrawal';
 import { FormField } from '../form-field';
 import { useRouter } from 'next/navigation';
 import { months } from '@/constants/months';
-import { withdrawalFormSchema } from './schema';
+import { anniversaryWithdrawalFormSchema } from './schema';
 
-export type WithdrawalFormType = z.infer<typeof withdrawalFormSchema>;
+export type AnniversaryWithdrawalFormType = z.infer<
+  typeof anniversaryWithdrawalFormSchema
+>;
 
-export const WithdrawalForm: React.FC = () => {
+export const AnniversaryWithdrawalForm: React.FC = () => {
   const {
     handleSubmit,
     register,
     control,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(withdrawalFormSchema),
+    resolver: zodResolver(anniversaryWithdrawalFormSchema),
     defaultValues: {
       name: '',
       balance: '',
@@ -30,10 +32,10 @@ export const WithdrawalForm: React.FC = () => {
       date: '',
     },
   });
-  const { saveFormData } = useFgts();
+  const { saveFormData } = useAnniversaryWithdrawal();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<WithdrawalFormType> = (data) => {
+  const onSubmit: SubmitHandler<AnniversaryWithdrawalFormType> = (data) => {
     const balance = Number(
       data.balance
         .replace(/\./g, '')

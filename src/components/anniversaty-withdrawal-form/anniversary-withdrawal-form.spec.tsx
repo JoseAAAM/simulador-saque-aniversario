@@ -1,9 +1,9 @@
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { WithdrawalForm } from './';
+import { AnniversaryWithdrawalForm } from '.';
 
-jest.mock('@/contexts/fgts', () => ({
-  useFgts: jest.fn(),
+jest.mock('@/contexts/anniversary-withdrawal', () => ({
+  useAnniversaryWithdrawal: jest.fn(),
 }));
 
 jest.mock('next/navigation', () => ({
@@ -14,16 +14,16 @@ jest.mock('@/utils/calculate-withdrawal', () => ({
   calculateWithdrawal: jest.fn(),
 }));
 
-import { useFgts } from '@/contexts/fgts';
+import { useAnniversaryWithdrawal } from '@/contexts/anniversary-withdrawal';
 import { useRouter } from 'next/navigation';
 import { calculateWithdrawal } from '@/utils/calculate-withdrawal';
 
-describe('WithdrawalForm component', () => {
+describe('AnniversaryWithdrawalForm component', () => {
   const mockedSaveFormData = jest.fn();
   const mockedPush = jest.fn();
 
   beforeEach(() => {
-    (useFgts as jest.Mock).mockReturnValue({
+    (useAnniversaryWithdrawal as jest.Mock).mockReturnValue({
       saveFormData: mockedSaveFormData,
     });
 
@@ -48,7 +48,7 @@ describe('WithdrawalForm component', () => {
   });
 
   it('should render the component correctly', () => {
-    render(<WithdrawalForm />);
+    render(<AnniversaryWithdrawalForm />);
 
     expect(screen.getByText('Qual seu nome?')).toBeInTheDocument();
     expect(screen.getByText('Qual seu telefone?')).toBeInTheDocument();
@@ -62,7 +62,7 @@ describe('WithdrawalForm component', () => {
   });
 
   it('should submit form and call saveFormData + router.push', async () => {
-    render(<WithdrawalForm />);
+    render(<AnniversaryWithdrawalForm />);
 
     fireEvent.change(screen.getByTestId('name'), {
       target: { value: 'José Machoski' },

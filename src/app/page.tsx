@@ -1,9 +1,9 @@
-import { WithdrawalForm } from '../components/withdrawal-form';
+import { AnniversaryWithdrawalForm } from '../components/anniversaty-withdrawal-form';
 
 export default function Home() {
   return (
     <main>
-      <WithdrawalForm />
+      <AnniversaryWithdrawalForm />
     </main>
   );
 }

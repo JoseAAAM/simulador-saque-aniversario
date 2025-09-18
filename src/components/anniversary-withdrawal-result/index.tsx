@@ -1,10 +1,10 @@
 'use client';
 
-import { useFgts } from '@/contexts/fgts';
+import { useAnniversaryWithdrawal } from '@/contexts/anniversary-withdrawal';
 import { redirect } from 'next/navigation';
 
-export function WithdrawalResult() {
-  const { data } = useFgts();
+export function AnniversaryWithdrawalResult() {
+  const { data } = useAnniversaryWithdrawal();
 
   if (!data.name || !data.amount) {
     redirect('/');

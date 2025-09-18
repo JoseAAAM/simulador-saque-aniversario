@@ -1,8 +1,10 @@
 'use client';
 
-import { FgtsProvider } from '@/contexts/fgts';
+import { AnniversaryWithdrawalProvider } from '@/contexts/anniversary-withdrawal';
 import React from 'react';
 
 export function Provider({ children }: { children: React.ReactNode }) {
-  return <FgtsProvider>{children}</FgtsProvider>;
+  return (
+    <AnniversaryWithdrawalProvider>{children}</AnniversaryWithdrawalProvider>
+  );
 }

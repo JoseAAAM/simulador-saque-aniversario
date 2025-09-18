@@ -3,7 +3,7 @@ import { Montserrat } from 'next/font/google';
 import './globals.css';
 import { Provider } from './proviver';
 import { Header } from '@/components/header';
-import { FormIntro } from '@/components/form-intro';
+import { PageTitle } from '@/components/page-title';
 
 const montserrat = Montserrat({
   variable: '--font',
@@ -27,7 +27,7 @@ export default function RootLayout({
         <div className="w-[90vw] max-w-[350px] md:max-w-[700px] lg:max-w-[800px] mx-auto pb-8">
           <Header />
           <Provider>
-            <FormIntro />
+            <PageTitle />
             {children}
           </Provider>
         </div>
