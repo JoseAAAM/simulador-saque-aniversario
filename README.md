@@ -1,6 +1,6 @@
 # Saque-Aniversário FGTS – Formulário de Cálculo
 
-Este projeto é um formulário interativo que calcula o valor do **saque-aniversário do FGTS** com base no saldo informado pelo usuário e nas regras oficiais de saque.
+Este projeto é um formulário interativo que calcula o valor do **saque-aniversário do FGTS** com base no saldo informado pelo usuário e nas regras de saque.
 
 Além disso, o formulário realiza a **validação do telefone** via API externa para garantir que os dados fornecidos sejam válidos.
 
