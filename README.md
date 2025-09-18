@@ -25,7 +25,7 @@ Além disso, o formulário realiza a **validação do telefone** via API externa
 | R$ 5.000,01 – R$ 10.000  | 20%            | 650               |
 | R$ 10.000,01 – R$ 15.000 | 15%            | 1.150             |
 | R$ 15.000,01 – R$ 20.000 | 10%            | 1.900             |
-| R$ Acima de R$ 20.000,01 | 5%             | 2.900             |
+| Acima de R$ 20.000,01    | 5%             | 2.900             |
 
 - Integração com **Zod** e **React Hook Form** para validação de dados de formulário.
 - Validação do telefone feita em uma **API Route do Next.js**, que consome a Abstract API.
