@@ -25,7 +25,7 @@ export function AnniversaryWithdrawalResult() {
           {isLoading ? (
             <div className="flex items-baseline space-x-1 w-[200px] animate-pulse h-full">
               <div className="h-6 bg-gray-300 rounded w-1/5"></div>
-              <div className="h-10 bg-gray-300 rounded w-full"></div>
+              <div className="h-12 bg-gray-300 rounded w-full"></div>
               <div className="h-7 bg-gray-300 rounded w-1/5"></div>
             </div>
           ) : (

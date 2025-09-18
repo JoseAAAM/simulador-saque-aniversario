@@ -4,13 +4,17 @@ import { useAnniversaryWithdrawal } from '@/contexts/anniversary-withdrawal';
 import { DollarSign } from 'react-feather';
 
 export function PageTitle() {
-  const { data } = useAnniversaryWithdrawal();
+  const { data, isLoading } = useAnniversaryWithdrawal();
 
   const [name] = data?.name?.split(' ');
 
   return (
     <section className="flex flex-wrap items-end justify-between gap-6 pb-8 px-4 md:pb-18 lg:pb-26">
-      {name ? (
+      {isLoading ? (
+        <div className="flex items-end space-x-1 w-[300px] animate-pulse h-30 lg:h-36 lg:w-[400px]">
+          <div className="h-10 lg:h-12 bg-gray-300 rounded w-full"></div>
+        </div>
+      ) : name ? (
         <p className="text-4xl lg:text-5xl font-bold italic">
           <br />
           <br />
