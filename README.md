@@ -44,6 +44,26 @@ Além disso, o formulário realiza a **validação do telefone** via API externa
 
 ---
 
+## 🧠 Decisões e Detalhes Técnicos
+
+### 1. Segurança com API Route para Validação de Telefone
+
+A validação do número de telefone é realizada através de um serviço externo (Abstract API), que requer uma chave de API (API Key) para autenticação.
+
+Para evitar que a API Key fique exposta ao client-side uma API Route no Next.js (/src/app/api/validate-phone) foi criada, mantendo a variável ambiente oculta ao client-side
+
+### 2. 💾 Persistência de Dados com Session Storage e compartilhamento com ContextAPI
+
+Para melhorar a experiência do usuário os dados calculados são salvos no contexto e cacheados no sessionStorage, somente são carregados do storage caso a página seja recarregada.
+
+Uma opção também seria carregar as informações calculados por searchParams, mas como a aplicação contém somente 2 páginas são poucos dados a serem armazenados em sessionStorage.
+
+### 4. 🚀 Validação Robusta e Gerenciamento Eficiente com React Hook Form e Zod
+
+O **React Hook Form** e o **Zod** foram utilizados para manter uma gestão simplificada e eficiente do formulário, permitindo uma fácil gestão dos erros e facilidade em mudanças futuras no formulário
+
+---
+
 ## 🚀 Como Rodar o Projeto
 
 ### 1. Clonar o repositório
