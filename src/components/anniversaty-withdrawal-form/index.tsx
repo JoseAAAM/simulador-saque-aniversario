@@ -22,6 +22,7 @@ export const AnniversaryWithdrawalForm: React.FC = () => {
     handleSubmit,
     register,
     control,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(anniversaryWithdrawalFormSchema),
@@ -34,6 +35,8 @@ export const AnniversaryWithdrawalForm: React.FC = () => {
   });
   const { saveFormData } = useAnniversaryWithdrawal();
   const router = useRouter();
+
+  console.log(watch());
 
   const onSubmit: SubmitHandler<AnniversaryWithdrawalFormType> = (data) => {
     const balance = Number(
@@ -102,6 +105,7 @@ export const AnniversaryWithdrawalForm: React.FC = () => {
                 decimalSeparator=","
                 decimalScale={2}
                 fixedDecimalScale
+                allowNegative={false}
                 placeholder="Saldo FGTS"
                 className="w-100 max-w-[300px] p-4 border-2 border-gray-400 rounded-md text-sm"
               />

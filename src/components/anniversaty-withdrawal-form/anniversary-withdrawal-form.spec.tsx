@@ -95,4 +95,77 @@ describe('AnniversaryWithdrawalForm component', () => {
       expect(mockedPush).toHaveBeenCalledWith('/resultado');
     });
   });
+
+  it('should show error when name is empty', async () => {
+    render(<AnniversaryWithdrawalForm />);
+
+    fireEvent.change(screen.getByTestId('name'), { target: { value: '' } });
+    fireEvent.click(screen.getByTestId('submit-button'));
+
+    expect(await screen.findByText('O nome é obrigatório')).toBeInTheDocument();
+  });
+
+  it('should show error when name is too long', async () => {
+    render(<AnniversaryWithdrawalForm />);
+
+    fireEvent.change(screen.getByTestId('name'), {
+      target: { value: 'a'.repeat(101) },
+    });
+    fireEvent.click(screen.getByTestId('submit-button'));
+
+    expect(await screen.findByText('O nome é muito longo')).toBeInTheDocument();
+  });
+
+  it('should show error when phone has less than 10 digits', async () => {
+    render(<AnniversaryWithdrawalForm />);
+
+    fireEvent.change(screen.getByTestId('phone'), {
+      target: { value: '12345' },
+    });
+    fireEvent.click(screen.getByTestId('submit-button'));
+
+    expect(
+      await screen.findByText('O telefone deve conter 11 dígitos'),
+    ).toBeInTheDocument();
+  });
+
+  it('should show error when phone API returns invalid', async () => {
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ valid: false }),
+    });
+
+    render(<AnniversaryWithdrawalForm />);
+
+    fireEvent.change(screen.getByTestId('phone'), {
+      target: { value: '(41) 99999-8888' },
+    });
+    fireEvent.click(screen.getByTestId('submit-button'));
+
+    expect(await screen.findByText('Telefone inválido')).toBeInTheDocument();
+  });
+
+  it('should show error when balance is empty', async () => {
+    render(<AnniversaryWithdrawalForm />);
+
+    fireEvent.change(screen.getByTestId('balance'), {
+      target: { value: '' },
+    });
+    fireEvent.click(screen.getByTestId('submit-button'));
+
+    expect(
+      await screen.findByText('O saldo é obrigatório'),
+    ).toBeInTheDocument();
+  });
+
+  it('should show error when date is invalid', async () => {
+    render(<AnniversaryWithdrawalForm />);
+
+    fireEvent.change(screen.getByTestId('date'), {
+      target: { value: 'Invalid' },
+    });
+    fireEvent.click(screen.getByTestId('submit-button'));
+
+    expect(await screen.findByText('Mês inválido')).toBeInTheDocument();
+  });
 });
