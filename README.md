@@ -17,15 +17,15 @@ Além disso, o formulário realiza a **validação do telefone** via API externa
 
 - Cálculo automático do saque com base nas seguintes faixas de valores:
 
-| Faixa de Saldo (R$)      | Percentual (%) | Parcela Fixa (R$) |
-| ------------------------ | -------------- | ----------------- |
-| R$ 0 – R$ 500            | 50%            | 0                 |
-| R$ 500,01 – R$ 1.000     | 40%            | 50                |
-| R$ 1.000,01 – R$ 5.000   | 30%            | 150               |
-| R$ 5.000,01 – R$ 10.000  | 20%            | 650               |
-| R$ 10.000,01 – R$ 15.000 | 15%            | 1.150             |
-| R$ 15.000,01 – R$ 20.000 | 10%            | 1.900             |
-| Acima de R$ 20.000,01    | 5%             | 2.900             |
+| Faixa de Saldo (R$) | Percentual (%) | Parcela Fixa (R$) |
+| ------------------- | -------------- | ----------------- |
+| 0 – 500             | 50%            | 0                 |
+| 500,01 – 1.000      | 40%            | 50                |
+| 1.000,01 – 5.000    | 30%            | 150               |
+| 5.000,01 – 10.000   | 20%            | 650               |
+| 10.000,01 – 15.000  | 15%            | 1.150             |
+| 15.000,01 – 20.000  | 10%            | 1.900             |
+| Acima de 20.000,01  | 5%             | 2.900             |
 
 - Integração com **Zod** e **React Hook Form** para validação de dados de formulário.
 - Validação do telefone feita em uma **API Route do Next.js**, que consome a Abstract API.
